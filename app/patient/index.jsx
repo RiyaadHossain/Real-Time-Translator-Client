@@ -1,0 +1,73 @@
+import { View, Text, TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRouter } from "expo-router";
+import GlobalStyles from "@/constants/GlobalStyles";
+import { useEffect, useState } from "react";
+import { getMe } from "../../lib/auth";
+
+export default function PatientHome() {
+  const router = useRouter();
+
+    const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = await AsyncStorage.getItem("token");
+        if (!token) {
+          setIsLoading(false);
+          router.replace("/auth/login");
+          return;
+        }
+
+        const res = await getMe();
+        if (!res.success) {
+          setIsLoading(false);
+          router.replace("/auth/login");
+          return;
+        }
+
+        const user = res.user;
+        setUser(user);
+      } catch (err) {
+        console.error("Auth check failed:", err);
+      }
+      setIsLoading(false);
+    };
+
+    checkAuth();
+  }, [router]);
+
+  const logout = async () => {
+    await AsyncStorage.removeItem("token");
+    router.replace("/");
+  };
+
+  if (isLoading) {
+    return (
+      <View style={GlobalStyles.container}>
+        <Text style={GlobalStyles.title}>Loading...</Text>
+      </View>
+    );
+  }
+
+  return (
+    <View style={GlobalStyles.container}>
+      <Text style={GlobalStyles.title}>🧑‍⚕️ Patient Dashboard</Text>
+      <Text style={GlobalStyles.subtitle}>Hello, Dear {user.name}!</Text>
+
+      <TouchableOpacity style={GlobalStyles.button} onPress={() => router.push("/patient/doctors")}>
+        <Text style={GlobalStyles.buttonText}>View Doctors</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={GlobalStyles.button} onPress={() => router.push("/patient/recordings")}>
+        <Text style={GlobalStyles.buttonText}>View Recordings</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={GlobalStyles.logoutButton} onPress={logout}>
+        <Text style={GlobalStyles.buttonText}>Logout</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
