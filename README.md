@@ -1,50 +1,32 @@
-# Welcome to your Expo app 👋
+# 🗣️ Real-Time Translator App (React Native + Expo)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A minimal real-time translator app built with **React Native** and **Expo**, featuring basic **authentication (login, register, and profile)** functionality using **Axios** and **JWT tokens**.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+- ✅ User Registration  
+- ✅ User Login  
+- ✅ Persistent JWT token storage using AsyncStorage  
+- ✅ "Me" API to fetch authenticated user profile  
+- ✅ Axios setup with token interceptor  
+- ✅ Clean MVC-based API consumption  
+- ✅ React Navigation (recommended to be added)  
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 📁 Folder Structure
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```plaintext
+project-root/
+├── App.js
+├── lib/
+│   ├── api.js          # Axios instance
+│   └── auth.js         # Login, register, me functions
+├── screens/
+│   ├── LoginScreen.js
+│   ├── RegisterScreen.js
+│   └── ProfileScreen.js
+├── assets/
+└── ...

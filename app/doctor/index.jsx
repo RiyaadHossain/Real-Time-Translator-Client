@@ -53,20 +53,20 @@ export default function DoctorHome() {
   return (
     <View style={GlobalStyles.container}>
       <Text style={GlobalStyles.title}>👨‍⚕️ Doctor Dashboard</Text>
-      <Text style={GlobalStyles.subtitle}>Welcome back, {user.name}!</Text>
+      <Text style={GlobalStyles.subtitle}>Welcome back, {user?.name || "Doctor"}!</Text>
 
       <TouchableOpacity
         style={GlobalStyles.button}
-        onPress={() => router.push("doctor/patients")}
+        onPress={() => router.push("/translations/select-language")}
       >
-        <Text style={GlobalStyles.buttonText}>View Patients</Text>
+        <Text style={GlobalStyles.buttonText}>Translate Real-Time</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={GlobalStyles.button}
-        onPress={() => router.push("doctor/recordings")}
+        onPress={() => router.push("/translations")}
       >
-        <Text style={GlobalStyles.buttonText}>View Recordings</Text>
+        <Text style={GlobalStyles.buttonText}>View Translations</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={GlobalStyles.logoutButton} onPress={logout}>

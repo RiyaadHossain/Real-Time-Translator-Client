@@ -19,13 +19,12 @@ export default function LandingPage() {
           return;
         }
 
-        const res = (await getMe());
+        const res = await getMe();
         if (!res.success) {
           setIsLoading(false);
           router.replace("/auth/login");
           return;
         }
-
 
         const user = res.user;
 
@@ -54,6 +53,7 @@ export default function LandingPage() {
   }
 
   return (
+    <>
       <View style={styles.container}>
         <Text style={styles.title}>
           🗣️ Real-Time Translator <HelloWave />
@@ -76,6 +76,7 @@ export default function LandingPage() {
           </TouchableOpacity>
         </View>
       </View>
+    </>
   );
 }
 

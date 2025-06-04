@@ -55,14 +55,14 @@ export default function PatientHome() {
   return (
     <View style={GlobalStyles.container}>
       <Text style={GlobalStyles.title}>🧑‍⚕️ Patient Dashboard</Text>
-      <Text style={GlobalStyles.subtitle}>Hello, Dear {user.name}!</Text>
+      <Text style={GlobalStyles.subtitle}>Hello, Dear {user?.name || "Patient"}!</Text>
 
-      <TouchableOpacity style={GlobalStyles.button} onPress={() => router.push("/patient/doctors")}>
-        <Text style={GlobalStyles.buttonText}>View Doctors</Text>
+      <TouchableOpacity style={GlobalStyles.button} onPress={() => router.push("/translations/select-language")}>
+        <Text style={GlobalStyles.buttonText}>Translate Real-Time</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={GlobalStyles.button} onPress={() => router.push("/patient/recordings")}>
-        <Text style={GlobalStyles.buttonText}>View Recordings</Text>
+      <TouchableOpacity style={GlobalStyles.button} onPress={() => router.push("/translations")}>
+        <Text style={GlobalStyles.buttonText}>View Translations</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={GlobalStyles.logoutButton} onPress={logout}>
